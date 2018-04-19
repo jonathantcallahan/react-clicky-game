@@ -41,13 +41,24 @@ class App extends Component {
     console.log(this.state.clicked)
   }
 
+  randomImage = () => {
+    const newArr = [];
+      while(newArr.length !== images.length){
+        let image = images[Math.floor(Math.random()*images.length)];
+        if(newArr.indexOf(image)<0){
+          newArr.push(image)
+        }
+      }
+    return newArr
+  }
+ 
   render() {
     return (
       <div className="body">
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet"/>
         <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>  
         <Header score={this.state.score} hScore={this.state.hScore}/>
-          { images.map(e => 
+          { this.randomImage().map(e => 
               ( 
                 <Image  updateClicked={this.updateClicked} 
                         name={e.name} 
