@@ -15,32 +15,27 @@ class App extends Component {
   updateClicked = name => {
     if(this.state.clicked.indexOf(name)>-1){
       alert('Aw you lost! Try again.')
-      this.setState({
-        clicked: []
-      })
+      this.setState({ clicked: [] })
+    
       if(this.state.score > this.state.hScore){
-        this.setState({
-          hScore: this.state.score
-        })
+        this.setState({ hScore: this.state.score })
       }
-      this.setState({
-        score: 0
-      })
+
+      this.setState({ score: 0 })
+      
       return;
+
     } else {
       var score = this.state.score;
       score++;
+
       if(score > this.state.hScore){
-        this.setState({
-          hScore: score
-        })
+        this.setState({ hScore: score })
       }
-      this.setState({
-        score: score
-      })
+      this.setState({ score: score })
     }
 
-    const clicked = this.state.clicked
+    let clicked = this.state.clicked
     clicked.push(name)    
     this.setState({ clicked })
     console.log(this.state.clicked)
@@ -48,15 +43,17 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-      <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet"/>
+      <div className="body">
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet"/>
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>  
         <Header score={this.state.score} hScore={this.state.hScore}/>
-        {
-          images
-            .map(e => (
-            <Image updateClicked={this.updateClicked} name={e.name} img={e.img}/>
-          ))
-        }
+          { images.map(e => 
+              ( 
+                <Image  updateClicked={this.updateClicked} 
+                        name={e.name} 
+                        img={e.img}/> 
+              ))
+          }
       </div>
     );
   }
