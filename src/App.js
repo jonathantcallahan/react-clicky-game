@@ -49,6 +49,7 @@ class App extends Component {
   render() {
     return (
       <div>
+      <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet"/>
         <Header score={this.state.score} hScore={this.state.hScore}/>
         {
           images
